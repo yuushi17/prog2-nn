@@ -39,11 +39,16 @@ dataloader_test = torch.utils.data.DataLoader(
     batch_size=batch_size
 )
 
+#GPU か CPU を自動的に選ぶ
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
 #for image_batch, label_batch in dataloader_test:
 #    print(image_batch.shape)
 #    print(label_batch.shape)
     
 model = models.Mymodel()
+#モデルを選んだデバイスに転送する
+model.to(device)
 
 loss_fn = torch.nn.CrossEntropyLoss()
 
